@@ -1,8 +1,22 @@
-/* 
-
-
-
-*/
+/**********************************************************/
+/*           Programación para mecatrónicos               */
+/*  Nombre:    Layla Garcia                               */
+/*  Matricula: 2026-0288                                  */
+/*  Seccion:   Miercoles                                  */
+/*  Practica:  Practica 1                                */
+/*  Fecha:     25/11/2026                                 */                       
+/* Link Practica: https://github.com/LMiche-coding/parcial-c-20260288 */
+/**********************************************************/
+/*****************************************************************************//*!
+   *
+   * @brief funcion principal. 
+   *        
+   * @param[in] recive ninguno 
+   *
+   * @return devuelve un entero que puede ser utilizado como indicador de error
+   *
+   * @Pass/ Fail criteria:  none.
+*****************************************************************************/
 
 #include <stdio.h> 
 #include <stdlib.h>
