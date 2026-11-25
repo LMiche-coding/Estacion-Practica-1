@@ -1,19 +1,23 @@
 CC      = gcc
-CFLAGS  = -g -Wall -Ilib/sqlite
-SQLFLAGS= -O2 -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION
-LIBS    = -lm
+CFLAGS  = -std=c11 -Wall -Wextra -D_DEFAULT_SOURCE -Ilib/sqlite 
+LIBS    = -lcurl -lm 
+OBJS    = build/main.o build/red.o build/datos.o build/sensor.o build/sqlite3.o
 
-build/crud: src/main.c build/sqlite3.o
-	$(CC) $(CFLAGS) src/main.c build/sqlite3.o -o $@ $(LIBS)
+all: estacion 
 
-build/sqlite3.o: lib/sqlite/sqlite3.c | build
-	$(CC) -c $(SQLFLAGS) $< -o $@
+estacion: $(OBJS)
+	$(CC) -o $@ $(OBJS) $(LIBS)
 
-build:
-	mkdir -p build
+build/sqlite3.o: lib/sqlite/sqlite3.c
+	@mkdir -p build
+	$(CC) -O2 -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION -c $< -o $@
 
-run: build/crud
-	./build/crud
+build/%.o: src/%.c
+	@mkdir -p build 
+	$(CC) -c $(CFLAGS) -c $< -o $@
+
+run: estacion
+	./estacion config
 
 clean:
-	rm -rf build escuela.db
+	rm -rf build estacion estacion.exe
