@@ -8,10 +8,9 @@ static double ruido(void)
     return((double)rand() / RAND_MAX * 2.0 - 1.0); 
 }
 
-static double limitar(double v, double alt, double baj)
+static double limitar(double v, double lo, double hi)
 {
-    if (v < baj) return baj;
-    if (v > alt) return alt; 
+    return v < lo ? lo : (v > hi ? hi : v); 
 }
 
 void sensor_leer(double *temp, double *corriente)
